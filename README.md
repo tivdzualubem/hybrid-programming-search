@@ -18,6 +18,11 @@ A hybrid information retrieval system for programming questions using:
 
 The project is built on the **MTEB StackOverflowDupQuestions** benchmark and packaged as a working web application.
 
+## Project Links
+
+- **GitHub Repository:** https://github.com/tivdzualubem/hybrid-programming-search
+- **Live Demo:** https://huggingface.co/spaces/lubem/hybrid-programming-search
+
 ## Project Goal
 
 Programming search suffers from a **vocabulary gap**.
