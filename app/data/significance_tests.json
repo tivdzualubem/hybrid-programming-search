@@ -1,0 +1,5 @@
+{
+  "Hybrid_RRF_vs_BM25_p": 3.1807147316572496e-71,
+  "Hybrid_Rerank_vs_BM25_p": 3.453313358352777e-20,
+  "Hybrid_RRF_vs_Hybrid_Rerank_p": 1.092469702503365e-15
+}

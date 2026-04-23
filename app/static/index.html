@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hybrid Programming Search</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <h1>Hybrid Programming Search Engine</h1>
+      <p>BM25, Dense Retrieval, Hybrid (RRF), and Hybrid + Rerank for programming questions.</p>
+    </header>
+
+    <section class="panel">
+      <label for="query">Enter your programming question</label>
+      <textarea id="query" rows="3" placeholder="e.g. python list index error"></textarea>
+
+      <label for="system">Retrieval System</label>
+      <select id="system">
+        <option>BM25</option>
+        <option>Dense</option>
+        <option selected>Hybrid (RRF)</option>
+        <option>Hybrid + Rerank</option>
+      </select>
+
+      <label for="topk">Top K Results</label>
+      <input id="topk" type="number" min="1" max="20" value="10" />
+
+      <div class="actions">
+        <button id="searchBtn">Search</button>
+        <button id="clearBtn" class="secondary">Clear</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Results</h2>
+      <div id="status" class="status"></div>
+      <div id="results"></div>
+    </section>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

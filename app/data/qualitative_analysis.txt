@@ -1,0 +1,354 @@
+====================================================================================================
+QUERY: python list index error
+====================================================================================================
+
+--- BM25 ---
+1. DOC ID: negative_test_query1661_00011
+ExecJS::RuntimeError in Listings#index error
+
+2. DOC ID: negative_test_query2339_00012
+How to get the index of the sorted list for the original list in Python?
+
+3. DOC ID: negative_test_query1996_00028
+Bisect a Python List and finding the Index
+
+4. DOC ID: negative_test_query2160_00026
+Pygame, Python list index problem
+
+5. DOC ID: negative_test_query2245_00000
+Change starting index of list in python?
+
+
+--- Dense ---
+1. DOC ID: negative_test_query2406_00024
+Python: TypeError: list indices must be integers, not list
+
+2. DOC ID: negative_test_query2406_00015
+(Python) TypeError: list indices must be integers, not list
+
+3. DOC ID: negative_test_query2406_00023
+Python TypeError: list indices must be integers, not type
+
+4. DOC ID: negative_test_query2406_00028
+TypeError: list indices must be integers, not str Python
+
+5. DOC ID: negative_test_query2406_00008
+TypeError: list indices must be integers, not str (in my code,Python)
+
+
+--- Hybrid (RRF) ---
+1. DOC ID: negative_test_query2160_00026
+Pygame, Python list index problem
+
+2. DOC ID: negative_test_query2311_00005
+Index error - Python, Numpy, MatLab
+
+3. DOC ID: negative_test_query2245_00000
+Change starting index of list in python?
+
+4. DOC ID: negative_test_query2814_00026
+Pygame, Python list index problem
+
+5. DOC ID: negative_test_query2462_00015
+Python repeated list index out of range
+
+
+--- Hybrid + Rerank (top-20) ---
+1. DOC ID: negative_test_query2311_00005
+Index error - Python, Numpy, MatLab
+
+2. DOC ID: negative_test_query2192_00001
+List indices error in python, tic tac toe game
+
+3. DOC ID: negative_test_query2702_00014
+Python List assignment error
+
+4. DOC ID: negative_test_query2160_00026
+Pygame, Python list index problem
+
+5. DOC ID: negative_test_query2814_00026
+Pygame, Python list index problem
+
+====================================================================================================
+QUERY: javascript referenceerror is not defined
+====================================================================================================
+
+--- BM25 ---
+1. DOC ID: negative_test_query1256_00003
+JavaScript Uncaught ReferenceError: ListMgr is not defined
+
+2. DOC ID: negative_test_query1256_00006
+Uncaught ReferenceError: $ is not defined
+
+3. DOC ID: negative_test_query1256_00009
+Uncaught ReferenceError: "$ is not defined"
+
+4. DOC ID: negative_test_query1256_00014
+Uncaught ReferenceError: is not defined
+
+5. DOC ID: negative_test_query1256_00016
+Uncaught ReferenceError: not defined
+
+
+--- Dense ---
+1. DOC ID: negative_test_query1256_00016
+Uncaught ReferenceError: not defined
+
+2. DOC ID: negative_test_query1256_00014
+Uncaught ReferenceError: is not defined
+
+3. DOC ID: negative_test_query1256_00019
+Function is not defined - uncaught referenceerror
+
+4. DOC ID: negative_test_query1256_00024
+Uncaught ReferenceError: (function) is not defined
+
+5. DOC ID: negative_test_query1256_00013
+Uncaught ReferenceError: function is not defined
+
+
+--- Hybrid (RRF) ---
+1. DOC ID: negative_test_query1256_00016
+Uncaught ReferenceError: not defined
+
+2. DOC ID: negative_test_query1256_00014
+Uncaught ReferenceError: is not defined
+
+3. DOC ID: negative_test_query1256_00006
+Uncaught ReferenceError: $ is not defined
+
+4. DOC ID: negative_test_query1256_00009
+Uncaught ReferenceError: "$ is not defined"
+
+5. DOC ID: negative_test_query1256_00017
+Uncaught ReferenceError: $ not defined
+
+
+--- Hybrid + Rerank (top-20) ---
+1. DOC ID: negative_test_query1256_00003
+JavaScript Uncaught ReferenceError: ListMgr is not defined
+
+2. DOC ID: negative_test_query1256_00024
+Uncaught ReferenceError: (function) is not defined
+
+3. DOC ID: negative_test_query1256_00014
+Uncaught ReferenceError: is not defined
+
+4. DOC ID: negative_test_query1256_00016
+Uncaught ReferenceError: not defined
+
+5. DOC ID: negative_test_query1256_00015
+Uncaught ReferenceError: var is not defined
+
+====================================================================================================
+QUERY: java null pointer exception in arraylist
+====================================================================================================
+
+--- BM25 ---
+1. DOC ID: apositive_test_query158_00000
+Null Pointer Exception Java
+
+2. DOC ID: negative_test_query158_00003
+Java Null Pointer Exception
+
+3. DOC ID: negative_test_query158_00005
+null pointer exception in java .
+
+4. DOC ID: negative_test_query158_00011
+Null Pointer Exception for Java
+
+5. DOC ID: negative_test_query158_00014
+Java Null Pointer Exception
+
+
+--- Dense ---
+1. DOC ID: negative_test_query158_00011
+Null Pointer Exception for Java
+
+2. DOC ID: negative_test_query158_00024
+java null pointer exception
+
+3. DOC ID: negative_test_query158_00022
+Java Null Pointer Exception
+
+4. DOC ID: negative_test_query158_00014
+Java Null Pointer Exception
+
+5. DOC ID: negative_test_query158_00003
+Java Null Pointer Exception
+
+
+--- Hybrid (RRF) ---
+1. DOC ID: negative_test_query158_00011
+Null Pointer Exception for Java
+
+2. DOC ID: negative_test_query158_00003
+Java Null Pointer Exception
+
+3. DOC ID: apositive_test_query158_00000
+Null Pointer Exception Java
+
+4. DOC ID: negative_test_query158_00024
+java null pointer exception
+
+5. DOC ID: negative_test_query158_00005
+null pointer exception in java .
+
+
+--- Hybrid + Rerank (top-20) ---
+1. DOC ID: negative_test_query158_00005
+null pointer exception in java .
+
+2. DOC ID: negative_test_query158_00003
+Java Null Pointer Exception
+
+3. DOC ID: negative_test_query158_00024
+java null pointer exception
+
+4. DOC ID: negative_test_query158_00022
+Java Null Pointer Exception
+
+5. DOC ID: negative_test_query158_00014
+Java Null Pointer Exception
+
+====================================================================================================
+QUERY: how to convert string to int in python
+====================================================================================================
+
+--- BM25 ---
+1. DOC ID: negative_test_query2876_00020
+Python: Convert hex string to int and back
+
+2. DOC ID: negative_test_query2417_00008
+How to convert ctypes' c_long to Python's int?
+
+3. DOC ID: negative_test_query311_00015
+How can I convert string to const class int value?
+
+4. DOC ID: negative_test_query203_00027
+Convert int array of byte to String in JAVA
+
+5. DOC ID: negative_test_query801_00023
+Convert String month to Int month [Java]
+
+
+--- Dense ---
+1. DOC ID: negative_test_query2677_00009
+Convert a string to integer with decimal in Python
+
+2. DOC ID: negative_test_query2281_00017
+Python int() of a string that is a float number
+
+3. DOC ID: negative_test_query2934_00002
+Convert String to Decimal in Python
+
+4. DOC ID: negative_test_query2677_00002
+Convert String to Decimal in Python
+
+5. DOC ID: negative_test_query2355_00009
+Python String Converter; how do I convert a string in python
+
+
+--- Hybrid (RRF) ---
+1. DOC ID: negative_test_query2876_00020
+Python: Convert hex string to int and back
+
+2. DOC ID: negative_test_query2355_00009
+Python String Converter; how do I convert a string in python
+
+3. DOC ID: negative_test_query2281_00017
+Python int() of a string that is a float number
+
+4. DOC ID: negative_test_query578_00005
+How to convert ASCII to int?
+
+5. DOC ID: negative_test_query578_00004
+Convert ascii to int?
+
+
+--- Hybrid + Rerank (top-20) ---
+1. DOC ID: negative_test_query2876_00020
+Python: Convert hex string to int and back
+
+2. DOC ID: negative_test_query2012_00003
+How to convert a string to utf-8 in Python
+
+3. DOC ID: negative_test_query2677_00009
+Convert a string to integer with decimal in Python
+
+4. DOC ID: negative_test_query2677_00002
+Convert String to Decimal in Python
+
+5. DOC ID: negative_test_query2934_00002
+Convert String to Decimal in Python
+
+====================================================================================================
+QUERY: website is white after running javascript
+====================================================================================================
+
+--- BM25 ---
+1. DOC ID: negative_test_query1813_00020
+Website javascript not running on iphone (safari)
+
+2. DOC ID: negative_test_query51_00009
+BufferedImage black and white after scaling
+
+3. DOC ID: negative_test_query1830_00005
+Run a website in fullscreen mode
+
+4. DOC ID: negative_test_query2266_00008
+Run a Python file on a website
+
+5. DOC ID: negative_test_query1189_00014
+Scrape a website (javascript website) using php
+
+
+--- Dense ---
+1. DOC ID: negative_test_query1689_00024
+JavaScript not working on website
+
+2. DOC ID: negative_test_query1689_00004
+Change website background with JavaScript not working
+
+3. DOC ID: negative_test_query1689_00022
+Trying to Javascript on Website
+
+4. DOC ID: negative_test_query1530_00011
+Javascript code not running in browser
+
+5. DOC ID: negative_test_query1832_00022
+Visual studio 2015 Javascript is white?
+
+
+--- Hybrid (RRF) ---
+1. DOC ID: negative_test_query1689_00024
+JavaScript not working on website
+
+2. DOC ID: negative_test_query1832_00022
+Visual studio 2015 Javascript is white?
+
+3. DOC ID: negative_test_query1689_00022
+Trying to Javascript on Website
+
+4. DOC ID: negative_test_query1689_00026
+Javascript in a website
+
+5. DOC ID: negative_test_query1689_00004
+Change website background with JavaScript not working
+
+
+--- Hybrid + Rerank (top-20) ---
+1. DOC ID: negative_test_query1832_00022
+Visual studio 2015 Javascript is white?
+
+2. DOC ID: negative_test_query1689_00024
+JavaScript not working on website
+
+3. DOC ID: negative_test_query1048_00027
+How to run javascript code in JavaFx.WebView after the page is loaded?
+
+4. DOC ID: negative_test_query1689_00026
+Javascript in a website
+
+5. DOC ID: negative_test_query1813_00020
+Website javascript not running on iphone (safari)
