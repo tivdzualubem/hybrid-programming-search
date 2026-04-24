@@ -22,6 +22,7 @@ The project is built on the **MTEB StackOverflowDupQuestions** benchmark and pac
 
 - **GitHub Repository:** https://github.com/tivdzualubem/hybrid-programming-search
 - **Live Demo:** https://huggingface.co/spaces/lubem/hybrid-programming-search
+- **Video Presentation:** https://drive.google.com/file/d/183WmUNSKsSvWL12bLtsK2A0UTZEB1rLl/view?usp=sharing
 
 ## Project Goal
 
