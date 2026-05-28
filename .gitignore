@@ -3,4 +3,21 @@
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+
+# Large generated artifacts
+artifacts/
+bm25_corpus/
+bm25_index/
+dense_index/
+*.pkl
+*.index
+
+# Generated experiment outputs
+results/
+evaluation_results*.csv
+significance_tests.json
+qualitative_analysis.txt
+plot_*.png
+
+# Packaged artifacts
 hybrid_programming_search_artifacts.zip

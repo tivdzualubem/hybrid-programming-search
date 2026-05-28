@@ -1,150 +1,328 @@
----
-title: Hybrid Programming Search Engine
-emoji: 🔎
-colorFrom: blue
-colorTo: indigo
-sdk: docker
-app_port: 7860
----
-
 # Hybrid Programming Search Engine
 
-A hybrid information retrieval system for programming questions using:
+A hybrid information retrieval system for programming questions that combines lexical retrieval, dense retrieval, reciprocal rank fusion, and cross-encoder reranking.
 
-- BM25 lexical retrieval
-- Dense semantic retrieval
-- Reciprocal Rank Fusion (RRF)
-- Cross-Encoder reranking
+The project addresses the vocabulary gap in programming-question search. For example, a user may search with informal wording such as:
 
-The project is built on the **MTEB StackOverflowDupQuestions** benchmark and packaged as a working web application.
+    website is white after running javascript
 
-## Project Links
+while the relevant Stack Overflow duplicate question may use more technical language such as an exception name, API issue, or implementation detail.
 
-- **GitHub Repository:** https://github.com/tivdzualubem/hybrid-programming-search
-- **Live Demo:** https://huggingface.co/spaces/lubem/hybrid-programming-search
-- **Video Presentation:** https://drive.google.com/file/d/183WmUNSKsSvWL12bLtsK2A0UTZEB1rLl/view?usp=sharing
+This repository contains two parts:
 
-## Project Goal
+1. A public web application for interactive search.
+2. A reproducible experimental pipeline for rebuilding the dataset artifacts, indexes, evaluation results, and qualitative analysis.
 
-Programming search suffers from a **vocabulary gap**.
+---
 
-A user may describe a problem informally, such as:
+## Project Overview
 
-- `website is white after running javascript`
+The system compares four retrieval configurations:
 
-while the relevant technical discussion may use very different terms, such as:
+1. BM25 — lexical retrieval using Pyserini/Lucene.
+2. Dense Retrieval — semantic retrieval using all-MiniLM-L6-v2 and FAISS.
+3. Hybrid RRF — BM25 and Dense results combined using Reciprocal Rank Fusion.
+4. Hybrid + Rerank — Hybrid RRF candidates reranked with a cross-encoder.
 
-- `Uncaught ReferenceError`
-- `JavaScript not working on website`
+The evaluation uses the MTEB StackOverflowDupQuestions benchmark.
 
-To address this, this project combines lexical and semantic retrieval in one pipeline.
+Main evaluation metrics:
 
-## Final Retrieval Systems
+- Precision@10
+- Recall@10
+- MAP
+- nDCG@10
+- Wilcoxon signed-rank statistical tests
 
-The project compares four systems:
+---
 
-1. **BM25**
-2. **Dense Retrieval**
-3. **Hybrid (RRF)**
-4. **Hybrid + Rerank (top-20)**
+## Repository Structure
 
-## Final Results
+    hybrid-programming-search/
+    ├── app/
+    │   ├── __init__.py
+    │   ├── config.py
+    │   ├── main.py
+    │   ├── schemas.py
+    │   ├── search_service.py
+    │   └── utils.py
+    │
+    ├── scripts/
+    │   ├── config.py
+    │   ├── export_artifacts.py
+    │   ├── build_indexes.py
+    │   ├── retrieval_pipeline.py
+    │   ├── evaluate.py
+    │   ├── qualitative_analysis.py
+    │   └── run_all_experiments.sh
+    │
+    ├── report/
+    │   └── final_report.pdf
+    │
+    ├── Dockerfile
+    ├── requirements.txt
+    ├── README.md
+    ├── .gitignore
+    ├── .dockerignore
+    └── .gitattributes
 
-| System | Queries Evaluated | Precision@10 | Recall@10 | MAP | nDCG@10 |
-|---|---:|---:|---:|---:|---:|
-| BM25 | 2992 | 0.663068 | 0.221738 | 0.309820 | 0.692774 |
-| Dense | 2992 | 0.665441 | 0.222582 | 0.306795 | 0.697388 |
-| Hybrid (RRF) | 2992 | **0.721491** | **0.241327** | **0.350161** | **0.747357** |
-| Hybrid + Rerank (top-20, BEST) | 2992 | 0.704813 | 0.235739 | 0.343802 | 0.729364 |
+---
 
-## Main Finding
+## Web Application
 
-**Hybrid (RRF)** is the best overall system.
+The web application exposes the retrieval system through a FastAPI interface.
 
-It consistently outperforms BM25, Dense Retrieval, and the reranked system on the final evaluation table.
+The deployed version allows users to:
 
-## Query Examples
+- Enter a programming search query.
+- Select the retrieval system.
+- Compare BM25, Dense Retrieval, Hybrid RRF, and Hybrid + Rerank.
+- Return top-k ranked results.
 
-The UI can be tested with queries such as:
+Live demo:
 
-- `python list index error`
-- `website is white after running javascript`
-- `java null pointer exception in arraylist`
+    https://huggingface.co/spaces/lubem/hybrid-programming-search
 
-## Tech Stack
+---
 
-### Backend
-- FastAPI
-- Uvicorn
+## Reproducing the IR Experiments
 
-### Retrieval
-- Pyserini (BM25 / Lucene)
-- FAISS
-- Sentence-Transformers
-- Cross-Encoder reranking
+This repository includes the full experimental pipeline needed to reproduce the results from scratch.
 
-### Models
-- `all-MiniLM-L6-v2`
-- `cross-encoder/ms-marco-MiniLM-L-6-v2`
+The pipeline does the following:
 
-## Project Structure
+1. Loads the MTEB StackOverflowDupQuestions dataset.
+2. Processes the corpus, queries, and qrels.
+3. Builds a Pyserini BM25 index.
+4. Builds a FAISS dense index.
+5. Runs BM25, Dense, Hybrid RRF, and Hybrid + Rerank retrieval.
+6. Computes Precision@10, Recall@10, MAP, and nDCG@10.
+7. Runs Wilcoxon signed-rank statistical tests.
+8. Saves qualitative retrieval examples.
 
-    app/
-      main.py
-      config.py
-      schemas.py
-      search_service.py
-      retrievers/
-        bm25.py
-        dense.py
-        fusion.py
-        rerank.py
-      data/
-        bm25_index/
-        dense_index/
-        documents.pkl
-        query_dict.pkl
-        qrels_dict.pkl
-        doc_ids.pkl
-        evaluation_results.csv
-        evaluation_results_final.csv
-        significance_tests.json
-        qualitative_analysis.txt
-        per_query_winner_ndcg10.csv
-      static/
-        index.html
-        style.css
-        script.js
-        assets/
-    Dockerfile
-    requirements.txt
-    README.md
+---
 
-## Run Locally
+## Setup
 
-Create and activate a virtual environment, then install dependencies.
+Install Python dependencies:
 
-    python3 -m venv .venv
-    source .venv/bin/activate
-    pip install --upgrade pip setuptools wheel
-    pip install --index-url https://download.pytorch.org/whl/cpu torch==2.2.2+cpu torchvision==0.17.2+cpu torchaudio==2.2.2+cpu
     pip install -r requirements.txt
 
-Then run:
+Pyserini requires Java. On Ubuntu:
 
-    export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-    uvicorn app.main:app --reload
+    sudo apt-get update
+    sudo apt-get install -y openjdk-11-jdk
+    export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 
-Open:
+You may also need:
 
-    http://127.0.0.1:8000
+    export JVM_OPTS="--add-modules=jdk.incubator.vector"
 
-## Public Demo
+---
 
-This repository is prepared for deployment as a **Hugging Face Docker Space** so that the application can be accessed publicly by instructors, teammates, and reviewers.
+## Run the Full Experiment Pipeline
 
-## Notes
+From the repository root:
 
-- The dataset was evaluated on the full test split because no reliable language metadata field was available for strict Python / Java / JavaScript filtering.
-- The best reranking depth was **top-20**.
-- Larger rerank depths degraded performance, likely due to domain mismatch between MS MARCO training data and Stack Overflow technical content.
+    bash scripts/run_all_experiments.sh
+
+This runs:
+
+    python scripts/export_artifacts.py
+    python scripts/build_indexes.py
+    python scripts/retrieval_pipeline.py
+    python scripts/evaluate.py
+    python scripts/qualitative_analysis.py
+
+---
+
+## Run Each Step Manually
+
+### 1. Export Dataset Artifacts
+
+    python scripts/export_artifacts.py
+
+This loads and preprocesses the MTEB benchmark.
+
+Generated files include:
+
+    artifacts/documents.pkl
+    artifacts/query_dict.pkl
+    artifacts/qrels_dict.pkl
+    artifacts/run_config.json
+    artifacts/environment_info.json
+
+---
+
+### 2. Build BM25 and FAISS Indexes
+
+    python scripts/build_indexes.py
+
+This builds:
+
+    artifacts/bm25_corpus/
+    artifacts/bm25_index/
+    artifacts/dense_index/stackoverflow_faiss.index
+    artifacts/dense_index/doc_ids.pkl
+
+---
+
+### 3. Test the Retrieval Pipeline
+
+    python scripts/retrieval_pipeline.py
+
+This runs a small sanity check query through:
+
+- BM25
+- Dense Retrieval
+- Hybrid RRF
+- Hybrid + Rerank
+
+---
+
+### 4. Run Evaluation
+
+    python scripts/evaluate.py
+
+This generates:
+
+    results/evaluation_results_final.csv
+    results/significance_tests.json
+
+The evaluation includes:
+
+- Precision@10
+- Recall@10
+- MAP
+- nDCG@10
+- Wilcoxon signed-rank tests
+
+---
+
+### 5. Run Qualitative Analysis
+
+    python scripts/qualitative_analysis.py
+
+This generates:
+
+    results/qualitative_analysis.txt
+
+The qualitative analysis compares the four retrieval systems on example programming queries.
+
+---
+
+## Script Descriptions
+
+| Script | Purpose |
+|---|---|
+| scripts/config.py | Stores experiment configuration, model names, candidate sizes, and paths. |
+| scripts/export_artifacts.py | Loads the MTEB dataset, preprocesses corpus/query/qrels data, and saves reproducibility artifacts. |
+| scripts/build_indexes.py | Builds the Pyserini BM25 index and FAISS dense index. |
+| scripts/retrieval_pipeline.py | Implements BM25, dense retrieval, RRF hybrid fusion, and cross-encoder reranking. |
+| scripts/evaluate.py | Computes Precision@10, Recall@10, MAP, nDCG@10, and Wilcoxon signed-rank tests. |
+| scripts/qualitative_analysis.py | Generates qualitative examples comparing the retrieval systems. |
+| scripts/run_all_experiments.sh | Runs the full experiment pipeline in the correct order. |
+
+---
+
+## Experiment Configuration
+
+The main experiment settings are stored in:
+
+    scripts/config.py
+
+Important settings:
+
+    Seed: 42
+    Dataset: mteb/stackoverflowdupquestions
+    Corpus split: test
+    Query split: test
+    Qrels split: test
+    Bi-encoder: all-MiniLM-L6-v2
+    Cross-encoder: cross-encoder/ms-marco-MiniLM-L-6-v2
+    BM25 candidate pool: 100
+    Dense candidate pool: 100
+    RRF constant: 60
+    Rerank depth: 20
+    Final cutoff: 10
+    Common MAP ranking depth: 20
+
+---
+
+## Generated Files Not Committed
+
+The following files and directories are generated locally and intentionally ignored by Git:
+
+    artifacts/
+    results/
+    *.pkl
+    *.index
+    evaluation_results*.csv
+    significance_tests.json
+    qualitative_analysis.txt
+    plot_*.png
+
+These files are not committed because they can be regenerated from the scripts.
+
+This keeps the repository lightweight while still making the experiments reproducible.
+
+---
+
+## Main Methodology
+
+### BM25
+
+BM25 is implemented with Pyserini/Lucene. The corpus is serialized into JSONL format and indexed using Lucene.
+
+### Dense Retrieval
+
+Dense retrieval uses all-MiniLM-L6-v2 to encode Stack Overflow questions into dense vectors. FAISS is used for nearest-neighbor search.
+
+### Reciprocal Rank Fusion
+
+BM25 and Dense ranked lists are combined using Reciprocal Rank Fusion:
+
+    RRF(d) = sum(1 / (k + rank(d)))
+
+where k = 60.
+
+### Cross-Encoder Reranking
+
+The top fused candidates are reranked using:
+
+    cross-encoder/ms-marco-MiniLM-L-6-v2
+
+The final best reranking setting uses top-20 fused candidates.
+
+---
+
+## Report
+
+The final project report is included here:
+
+    report/final_report.pdf
+
+The report explains the dataset, methodology, results, statistical testing, query-type analysis, runtime analysis, and public demo.
+
+---
+
+## Notes on Reproducibility
+
+The project was designed so another researcher can regenerate the experimental results from source scripts rather than relying only on final CSV or PKL outputs.
+
+To reproduce the experiments, run:
+
+    bash scripts/run_all_experiments.sh
+
+The generated artifacts and results will appear in:
+
+    artifacts/
+    results/
+
+---
+
+## Authors
+
+Tivdzua Lubem Noah  
+Sikeh Gisele Wiykiynyuy  
+Venera Bikbulatova
